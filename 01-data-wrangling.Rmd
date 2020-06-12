@@ -1,0 +1,87 @@
+---
+title: "01-data-wrangling"
+author: "Ronil V. Chandra"
+date: "30/05/2020"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Load required packages
+
+```{r load packages, echo=TRUE, include = TRUE}
+library(tidyverse)
+
+```
+
+#### Load required data
+
+```{r load data, echo=TRUE, include = TRUE}
+
+maindata <- read_csv("data-raw/psash-290420.csv")
+
+```
+
+#### Correct vector types
+
+```{r correct vectors, echo=TRUE}
+maindata %>% 
+  mutate(pub = as.integer(pub),
+         start = as.integer(start),
+         end = as.integer(end), 
+         psah = as.double(psah),
+         fu = as.double(fu),
+         nos_select = as.double(nos_select),
+         nos_outcome = as.double(nos_outcome),
+         nos_compare = as.double(nos_compare),
+         nos_outcome = as.double(nos_outcome),
+         country = as.factor(country),
+         type = as.factor(type)
+         )
+```
+
+#### Confirm new data structure with correct vector types
+
+```{r glimpse new, echo=TRUE}
+glimpse(maindata)
+view(maindata)
+```
+
+##Export to new csv file
+
+```{r export csv}
+
+write_csv(maindata, path = "data/maindata.csv")
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
